@@ -12,16 +12,6 @@ services:
       - "5000:5000"
     env_file:
       - ./backend/.env
-    environment:
-      - MEILISEARCH_URL=${MEILISEARCH_URL}
-      - BACKEND_URL=${BACKEND_URL}
-      - FRONTEND_URL=${FRONTEND_URL}
-      - GOOGLE_SHEET_API=${GOOGLE_SHEET_API}
-      - SLACK_API_URL=${SLACK_API_URL}
-      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
-      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
-      - SUPERTOKENS_URI=${SUPERTOKENS_URI}
-      - SUPERTOKENS_APIKEY=${SUPERTOKENS_APIKEY}
 
   mongo:
     image: mongo:latest
