@@ -1,11 +1,21 @@
-version: '3.8'
-
 services:
   frontend:
     build:
       context: ./frontend
     ports:
       - "3000:3000"
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  meilisearch:
+    image: getmeili/meilisearch:latest
+    ports:
+      - "7700:7700"
 
 volumes:
   mongo-data:
