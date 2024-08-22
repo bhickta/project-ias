@@ -47,6 +47,7 @@ const client = new MeiliSearch({
   apiKey: "masterKey",
 });
 
+console.log(SUPERTOKENS_URI, SUPERTOKENS_APIKEY)
 //init supertokens for user auth.
 supertokens.init({
   supertokens: {

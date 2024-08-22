@@ -12,6 +12,8 @@ services:
       - "5000:5000"
     env_file:
       - ./backend/.env
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo:latest
@@ -25,5 +27,16 @@ services:
     ports:
       - "7700:7700"
 
+  supertokens:
+    image: supertokens/supertokens-mongodb:latest
+    environment:
+      ENABLED_CDI_VERSIONS: '2.7'
+      SUPERTOKENS_IN_MEMORY: 'true'
+    ports:
+      - "3567:3567"
+    depends_on:
+      - mongo 
+
 volumes:
   mongo-data:
+  supertokens-data:
