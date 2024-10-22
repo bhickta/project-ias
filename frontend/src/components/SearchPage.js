@@ -127,7 +127,7 @@ export default function SearchPage() {
       console.log(err);
     }
 
-    const data = { query: query, length: isPremiumUser() ? 50 : 3 };
+    const data = { query: query, length: true || isPremiumUser() ? 50 : 3 };
 
     if (materialType === "dns") {
       axios

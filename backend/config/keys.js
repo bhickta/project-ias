@@ -15,4 +15,5 @@ module.exports = {
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   SUPERTOKENS_URI: process.env.SUPERTOKENS_URI,
   SUPERTOKENS_APIKEY: process.env.SUPERTOKENS_APIKEY,
+  MONGO_URL: process.env.MONGO_URL,
 };

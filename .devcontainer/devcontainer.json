@@ -1,0 +1,35 @@
+{
+  "name": "Development Container",
+  "dockerComposeFile": [
+    "../docker-compose.yml"
+  ],
+  "service": "backend",  // Change to backend service
+  "workspaceFolder": "/app",
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "editor.formatOnSave": true
+  },
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "ms-vscode.vscode-typescript-next",
+    "ms-vscode.vscode-typescript-tslint-plugin"
+  ],
+  "postCreateCommand": "yarn install",
+  "remoteUser": "root",
+  "mounts": [
+    "source=${localWorkspaceFolder}/frontend,target=/workspace/frontend,type=bind",
+    "source=${localWorkspaceFolder}/backend,target=/workspace/backend,type=bind"
+  ],
+  "runArgs": [
+    "--gpus",
+    "all"
+  ],
+  "forwardPorts": [
+    3000,
+    5000,
+    27017,
+    7700,
+    3567
+  ]
+}

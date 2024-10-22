@@ -1,0 +1,10 @@
+{
+    "files.autoSave": "onWindowChange",
+    "files.autoSaveDelay": 1000,
+    "editor.tabSize": 2,
+    "editor.insertSpaces": true,
+    "eslint.validate": ["javascript", "typescript"],
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5"
+  }
+  

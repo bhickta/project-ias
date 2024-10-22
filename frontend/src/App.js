@@ -2,9 +2,9 @@ import axios from "axios";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import SuperTokens, {
-  getSuperTokensRoutesForReactRouterDom,
-} from "supertokens-auth-react";
+// import SuperTokens, {
+//   getSuperTokensRoutesForReactRouterDom,
+// } from "supertokens-auth-react";
 import EmailPassword from "supertokens-auth-react/recipe/emailpassword";
 import Session from "supertokens-auth-react/recipe/session";
 import ThirdPartyEmailPassword, {
@@ -20,44 +20,44 @@ import "./styles/main.scss";
 
 Session.addAxiosInterceptors(axios);
 
-SuperTokens.init({
-  appInfo: {
-    appName: "Project IAS",
-    apiDomain: BACKEND_URL,
-    websiteDomain: FRONTEND_URL,
-  },
-  recipeList: [
-    ThirdPartyEmailPassword.init({
-      signInAndUpFeature: {
-        providers: [Google.init()],
-      },
-      onHandleEvent: async (context) => {
-        if (context.action === "SESSION_ALREADY_EXISTS") {
-        } else {
-          let { id, email } = context.user;
-          if (context.action === "SUCCESS") {
-            localStorage.setItem("userEmail", email);
-            axios.post(USER_URL, { email }).then((user) => {
-              try {
-                localStorage.setItem(
-                  "userPrelims",
-                  JSON.stringify(user.data.prelims)
-                );
-                localStorage.setItem(
-                  "userMains",
-                  JSON.stringify(user.data.mains)
-                );
-                localStorage.setItem("payDate", user.data.payDate);
-              } catch {}
-            });
-          }
-        }
-      },
-    }),
-    Session.init(),
-    EmailPassword.init(),
-  ],
-});
+// SuperTokens.init({
+//   appInfo: {
+//     appName: "Project IAS",
+//     apiDomain: BACKEND_URL,
+//     websiteDomain: FRONTEND_URL,>
+//   },
+//   recipeList: [
+//     ThirdPartyEmailPassword.init({
+//       signInAndUpFeature: {
+//         providers: [Google.init()],
+//       },
+//       onHandleEvent: async (context) => {
+//         if (context.action === "SESSION_ALREADY_EXISTS") {
+//         } else {
+//           let { id, email } = context.user;
+//           if (context.action === "SUCCESS") {
+//             localStorage.setItem("userEmail", email);
+//             axios.post(USER_URL, { email }).then((user) => {
+//               try {
+//                 localStorage.setItem(
+//                   "userPrelims",
+//                   JSON.stringify(user.data.prelims)
+//                 );
+//                 localStorage.setItem(
+//                   "userMains",
+//                   JSON.stringify(user.data.mains)
+//                 );
+//                 localStorage.setItem("payDate", user.data.payDate);
+//               } catch {}
+//             });
+//           }
+//         }
+//       },
+//     }),
+//     Session.init(),
+//     EmailPassword.init(),
+//   ],
+// });
 
 function App() {
   if (!localStorage.getItem("searchCount")) {
@@ -68,9 +68,8 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {/* <Route path="/" component={SearchPage} /> */}
+        <Route path="/" component={SearchPage} />
         <Switch>
-          {getSuperTokensRoutesForReactRouterDom(require("react-router-dom"))}
           <Route path="/payment">
             <Payment />
           </Route>
@@ -78,13 +77,7 @@ function App() {
             <LandingPage />
           </Route>
           <Route path="/">
-            {!checkTrialStatus() ? (
-              <ThirdPartyEmailPasswordAuth>
-                <SearchPage />
-              </ThirdPartyEmailPasswordAuth>
-            ) : (
-              <SearchPage />
-            )}
+            <SearchPage />
           </Route>
         </Switch>
         <ToastContainer theme="dark" />
